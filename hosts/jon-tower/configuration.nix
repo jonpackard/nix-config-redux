@@ -108,37 +108,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox
-      tree
-      remmina
-      tmux
-      nmap
-      bitwarden
-      cryptomator
-      element
-      notepadqq
-      wol
-      git
-      vscodium
-      unigine-superposition
-      element-desktop
-      unstable.prusa-slicer
-      cura
-      blender
-      freecad
-      podman-compose
-      distrobox
-      appimage-run
-      p7zip
-      anydesk
-      discord
-      jellyfin-mpv-shim
-      fortune
-      neofetch
-      vlc
-      lighthouse-steamvr # Power management for SteamVR lighthouses
-    ];
+    # Packages defined in home-manager.
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -190,6 +160,8 @@
     fuse # needed by pcloud
     libimobiledevice # Needed for iPhone integration
     ifuse # Needed for iPhone integration
+    home-manager
+    git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

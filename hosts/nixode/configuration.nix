@@ -71,9 +71,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDD81PaVpMWLTJu/uvQsSSdsEn09Tdd//FluBGQHn+xYCAiyykl1JM0VfzphnSsNy04mRoOW99Mdvj2pUkXmoGCmF/ebpTymHZiuZBcWP/MIiWFDyM0Hdz56wG4WoqDr13wiAoI1YahwdlIwU+B8YVu6Pr6x2IilHxfzl79n9fYlVEsYZUcvZ3fAGt+ix8hNdyfcw0r/bIEFv2+D5IKhP16n3BwJUHHakDSTUBFumEjnbOf/sK2WNemzm9jgcinhfzG2WskOQR/Pt3VPUS4wK9MurFYg59MsPEa00EoraHeB6YnK8yWUmHD/veGmzDBK73crZrDrSaWQ5FbSh/Xatu3HzK2T5Y7Mn2HhajmYQFc5UgN41fF8O4Ft1dOmv5VeIH4y3mm00grmDcvvAU6fLUgWO/UBK0N0P1+3y0eRS30xaKQGDX1Ofn9l2CcVsAGeTHuq8ZTGLIA0UQ4tIMir47iVl2OTdY6RjcdSsZ9ikbdGJ64nh4dwc06/6bTck8Gw+0= jonathan@jon-tower" ];
-    packages = with pkgs; [
-      tmux
-    ];
   };
 
   users.users.direwolf = {
@@ -93,6 +90,7 @@
     # End Linode specific packages
     neofetch # Just for fun!
     fortune # Just for fun!
+    home-manager
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

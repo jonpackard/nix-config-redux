@@ -4,15 +4,8 @@
 
 # Ref: https://www.linode.com/docs/guides/install-nixos-on-linode/
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, inputs, vars, unstable, ... }:
 
-#let
-#  # Allow for packages from nixos-unstable
-#  # Ref: https://nixos.wiki/wiki/Nix_channels
-#  # unstable = import <nixos-unstable> { config = { allowUnfree = true; };
-#};
-
-#in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -132,7 +125,7 @@
   # Tailscale VPN
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
-  # services.tailscale.package = unstable.tailscale;
+  services.tailscale.package = unstable.tailscale;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

@@ -196,6 +196,7 @@
   # Tailscale VPN
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
+  services.tailscale.package = unstable.tailscale;
 
   # ==START NVIDIA==
 

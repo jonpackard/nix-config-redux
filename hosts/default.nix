@@ -26,7 +26,19 @@ in
     };
     modules = [                                             # Modules Used
       ./jon-tower/configuration.nix
-      #./configuration.nix
+    ];
+  };
+
+  nixode = lib.nixosSystem {                               # Linode Nanode VM Profile
+    inherit system;
+    specialArgs = {                                         # Pass Flake Variable
+      inherit inputs system unstable vars;
+      host = {
+        hostName = "nixode";
+      };
+    };
+    modules = [                                             # Modules Used
+      ./nixode/configuration.nix
     ];
   };
 }

@@ -41,4 +41,17 @@ in
       ./nixode/configuration.nix
     ];
   };
+
+  grootbook = lib.nixosSystem {                               # Laptop Profile
+    inherit system;
+    specialArgs = {                                         # Pass Flake Variable
+      inherit inputs system unstable vars;
+      host = {
+        hostName = "grootbook";
+      };
+    };
+    modules = [                                             # Modules Used
+      ./grootbook/configuration.nix
+    ];
+  };
 }

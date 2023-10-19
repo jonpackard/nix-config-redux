@@ -54,6 +54,8 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  services.usbmuxd.enable = true; # Needed for iPhone integration
+
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -96,7 +98,8 @@
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
     git
-	home-manager
+    home-manager
+    libimobiledevice # Needed for iPhone integration
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -29,6 +29,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Tailscale VPN
+  services.tailscale.enable = true;
+  # services.tailscale.useRoutingFeatures = "both";
+  services.tailscale.package = unstable.tailscale;
+
   # Set your time zone.
   time.timeZone = "America/New_York";
 

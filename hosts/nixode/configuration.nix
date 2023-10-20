@@ -130,10 +130,10 @@
   docker-containers.pihole = {
     image = "pihole/pihole:latest";
     ports = [
-      "53:53/tcp"
-      "53:53/udp"
-      "3080:80"
-      "30443:443"
+      "100.99.87.141:53:53/tcp"
+      "100.99.87.141:53:53/udp"
+      "100.99.87.141:3080:80"
+      "100.99.87.141:30443:443"
     ];
     volumes = [
       "/var/lib/pihole/:/etc/pihole/"

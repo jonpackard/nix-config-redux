@@ -125,12 +125,13 @@
   services.tailscale.useRoutingFeatures = "both";
   services.tailscale.package = unstable.tailscale;
 
-  # Pi-Hole Docker container (DNS server with ad and tracker blocking)
+  # Pihole Docker container (DNS server with ad and tracker blocking)
+  # Ref: https://github.com/NixOS/nixpkgs/issues/61617#issuecomment-500793160
   docker-containers.pihole = {
     image = "pihole/pihole:latest";
     ports = [
-      "${serverIP}:53:53/tcp"
-      "${serverIP}:53:53/udp"
+      "53:53/tcp"
+      "53:53/udp"
       "3080:80"
       "30443:443"
     ];
@@ -138,9 +139,6 @@
       "/var/lib/pihole/:/etc/pihole/"
       "/var/lib/dnsmasq.d:/etc/dnsmasq.d/"
     ];
-    environment = {
-      ServerIP = serverIP;
-    };
     extraDockerOptions = [
       "--cap-add=NET_ADMIN"
       "--dns=127.0.0.1"

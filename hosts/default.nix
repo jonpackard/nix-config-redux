@@ -54,4 +54,17 @@ in
       ./grootbook/configuration.nix
     ];
   };
+
+  atomnix = lib.nixosSystem {                               # Laptop Profile
+    inherit system;
+    specialArgs = {                                         # Pass Flake Variable
+      inherit inputs system unstable vars;
+      host = {
+        hostName = "atomnix";
+      };
+    };
+    modules = [                                             # Modules Used
+      ./atomnix/configuration.nix
+    ];
+  };
 }

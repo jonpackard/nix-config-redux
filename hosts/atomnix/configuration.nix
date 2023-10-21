@@ -17,12 +17,39 @@
   networking.hostName = "atomnix"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  # Enable DHCP on specific interfaces
+  # IMPORTANT - Do not enable DHCP or assign IP addresses to more than one bridge interface on the same VLAN!
+  networking.useDHCP = false; # Disable DHCP on any interface not specified
+  networking.interfaces.vmnic0.useDHCP = true; # This interface is used by the host, and can also be used by VMs
+  #networking.interfaces.vmnic1.useDHCP = true;
+  #networking.interfaces.vmnic2.useDHCP = true;
+  #networking.interfaces.vmnic3.useDHCP = true;
+  #networking.interfaces.vmnic4.useDHCP = true;
+
+  #Bridging
+  networking.iproute2.enable = true;
+  networking.bridges =
+  {
+    vmnic0 = {
+      interfaces = [ "eno1" ];
+    };
+    vmnic1 = {
+      interfaces = [ "eno2" ];
+    };
+    vmnic2 = {
+      interfaces = [ "eno3" ];
+    };
+    vmnic3 = {
+      interfaces = [ "eno4" ];
+    };
+    vmnic4 = {
+      interfaces = [ "eno5" ];
+    };
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "America/New_York";

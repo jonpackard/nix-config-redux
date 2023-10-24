@@ -26,6 +26,12 @@
   #networking.interfaces.vmnic3.useDHCP = true;
   #networking.interfaces.vmnic4.useDHCP = true;
 
+  # VLAN40 / Home Wi-Fi for Homebridge access
+  networking.interfaces.vmnic4.ipv4.addresses = [ {
+    address = "10.84.40.3";
+    prefixLength = 24;
+  } ];
+
   networking.vlans = {
     vlan40 = { id=40; interface="eno1"; };
   };

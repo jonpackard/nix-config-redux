@@ -87,6 +87,16 @@
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
+  security.sudo.extraRules = [
+    { users = [ "jonathan" ];
+      commands = [
+         { command = "/run/current-system/sw/bin/nix-store" ;
+           options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 

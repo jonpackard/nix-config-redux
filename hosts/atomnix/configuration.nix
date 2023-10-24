@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./pihole.nix
+      ./homebridge.nix
     ];
 
   # Bootloader.
@@ -15,22 +17,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "atomnix"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Enable DHCP on specific interfaces
-  # IMPORTANT - Do not enable DHCP or assign IP addresses to more than one bridge interface on the same VLAN!
-  networking.useDHCP = false; # Disable DHCP on any interface not specified
-  networking.interfaces.vmnic0.useDHCP = true; # This interface is used by the host, and can also be used by VMs
-  #networking.interfaces.vmnic1.useDHCP = true;
-  #networking.interfaces.vmnic2.useDHCP = true;
-  #networking.interfaces.vmnic3.useDHCP = true;
-  #networking.interfaces.vmnic4.useDHCP = true;
-
-  # VLAN40 / Home Wi-Fi for Homebridge access
-  networking.interfaces.vmnic4.ipv4.addresses = [ {
-    address = "10.84.40.3";
-    prefixLength = 24;
-  } ];
 
   networking.vlans = {
     vlan40 = { id=40; interface="eno1"; };
@@ -56,6 +42,26 @@
       interfaces = [ "eno5" "vlan40" ];
     };
   };
+
+  # IMPORTANT - Do not enable DHCP or assign IP addresses to more than one bridge interface on the same VLAN!
+  networking.useDHCP = false; # Disable DHCP on any interface not specified
+  #networking.interfaces.vmnic0.useDHCP = true;
+  #networking.interfaces.vmnic1.useDHCP = true;
+  #networking.interfaces.vmnic2.useDHCP = true;
+  #networking.interfaces.vmnic3.useDHCP = true;
+  #networking.interfaces.vmnic4.useDHCP = true;
+
+  # Mgmt LAN
+  networking.interfaces.vmnic0.ipv4.addresses = [ {
+    address = "10.84.1.3";
+    prefixLength = 24;
+  } ];
+
+  # Home Wi-Fi
+  networking.interfaces.vmnic4.ipv4.addresses = [ {
+    address = "10.84.40.3";
+    prefixLength = 24;
+  } ];
 
   #Enable libvirt
   virtualisation.libvirtd.enable = true;
@@ -134,29 +140,6 @@
   services.tailscale.enable = true;
   services.tailscale.useRoutingFeatures = "both";
   services.tailscale.package = unstable.tailscale;
-
-  # Pihole Docker container (DNS server with ad and tracker blocking)
-  # Ref: https://github.com/NixOS/nixpkgs/issues/61617#issuecomment-500793160
-  docker-containers.pihole = {
-    image = "pihole/pihole:latest";
-    ports = [
-      "53:53/tcp"
-      "53:53/udp"
-      "3080:80"
-      "30443:443"
-    ];
-    volumes = [
-      "/var/lib/pihole/:/etc/pihole/"
-      "/var/lib/dnsmasq.d:/etc/dnsmasq.d/"
-    ];
-    extraDockerOptions = [
-      "--cap-add=NET_ADMIN"
-      "--dns=127.0.0.1"
-      "--dns=1.1.1.1"
-    ];
-    workdir = "/var/lib/pihole/";
-  };
-
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];

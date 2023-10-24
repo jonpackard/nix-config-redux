@@ -11,6 +11,8 @@
     ];
     extraDockerOptions = [
       "--network=host"
+      "--dns=1.1.1.1"
+      "--dns=1.0.0.1"
     ];
   };
 

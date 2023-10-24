@@ -26,6 +26,10 @@
   #networking.interfaces.vmnic3.useDHCP = true;
   #networking.interfaces.vmnic4.useDHCP = true;
 
+  networking.vlans = {
+    vlan40 = { id=40; interface="eno1"; };
+  };
+
   #Bridging
   networking.iproute2.enable = true;
   networking.bridges =
@@ -43,7 +47,7 @@
       interfaces = [ "eno4" ];
     };
     vmnic4 = {
-      interfaces = [ "eno5" ];
+      interfaces = [ "eno5" "vlan40" ];
     };
   };
 
@@ -71,6 +75,10 @@
 
   # Enable Flakes and the new command-line tool
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  # TO-DO: https://nixos.wiki/wiki/Distributed_build
+  # temp workaround for remote build...
+  nix.settings.require-sigs = false;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jonathan = {

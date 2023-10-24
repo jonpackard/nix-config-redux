@@ -51,6 +51,18 @@
     };
   };
 
+  #Enable libvirt
+  virtualisation.libvirtd.enable = true;
+
+  #Define bridges libvirt can access
+  virtualisation.libvirtd.allowedBridges = [
+     "vmnic0"
+     "vmnic1"
+     "vmnic2"
+     "vmnic3"
+     "vmnic4"
+  ];
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -84,7 +96,7 @@
   users.users.jonathan = {
     isNormalUser = true;
     description = "Jonathan Packard";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "qemu-libvirtd" "kvm" ];
   };
 
   # Allow unfree packages

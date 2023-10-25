@@ -18,6 +18,8 @@
 
   networking.hostName = "atomnix"; # Define your hostname.
 
+  networking.defaultGateway.address = "10.84.1.1";
+
   networking.vlans = {
     vlan40 = { id=40; interface="eno1"; };
   };

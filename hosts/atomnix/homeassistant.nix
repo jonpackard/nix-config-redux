@@ -19,7 +19,9 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8123 ];
-  networking.firewall.allowedUDPPorts = [ 8123 ];
+  # Home Assistant: 8123
+  # Homekit Bridge: 5353/UDP 21063/TCP
+  networking.firewall.allowedTCPPorts = [ 8123 21063 ];
+  networking.firewall.allowedUDPPorts = [ 8123 5353 ];
 
 }

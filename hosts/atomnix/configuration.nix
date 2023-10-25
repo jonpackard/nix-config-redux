@@ -9,7 +9,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./pihole.nix
-      ./homeassistant.nix
     ];
 
   # Bootloader.
@@ -67,6 +66,7 @@
 
   #Enable libvirt
   virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemuOvmf = true;
 
   #Define bridges libvirt can access
   virtualisation.libvirtd.allowedBridges = [

@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./pihole.nix
-      ./homebridge.nix
+      ./homeassistant.nix
     ];
 
   # Bootloader.

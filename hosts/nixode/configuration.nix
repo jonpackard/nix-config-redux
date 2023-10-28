@@ -108,6 +108,9 @@
     enable = true;
     # Uncomment to allow SSH root login. Must be changed after initial setup!
     # settings.PermitRootLogin = "yes";
+    # Require public key authentication for better security
+    settings.PasswordAuthentication = false;
+    settings.KbdInteractiveAuthentication = false;
   };
 
   # Enable fail2ban - helps prevent brute force attacks

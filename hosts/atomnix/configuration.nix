@@ -19,10 +19,6 @@
 
   networking.defaultGateway.address = "10.84.1.1";
 
-  networking.vlans = {
-    vlan40 = { id=40; interface="eno1"; };
-  };
-
   #Bridging
   networking.iproute2.enable = true;
   networking.bridges =
@@ -40,7 +36,7 @@
       interfaces = [ "eno4" ];
     };
     vmnic4 = {
-      interfaces = [ "eno5" "vlan40" ];
+      interfaces = [ "eno5" ];
     };
   };
 
@@ -58,11 +54,11 @@
     prefixLength = 24;
   } ];
 
-  # Home Wi-Fi
-  networking.interfaces.vmnic4.ipv4.addresses = [ {
-    address = "10.84.40.3";
-    prefixLength = 24;
-  } ];
+  # Home Wi-Fi - disabled. Using firewall rules to allow specific traffic to the 10.84.1.3 address.
+  #networking.interfaces.vmnic4.ipv4.addresses = [ {
+  #  address = "10.84.40.3";
+  #  prefixLength = 24;
+  #} ];
 
   #Enable libvirt
   virtualisation.libvirtd.enable = true;

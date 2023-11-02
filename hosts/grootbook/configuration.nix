@@ -10,6 +10,10 @@
       ./hardware-configuration.nix
     ];
 
+  # TO-DO: https://nixos.wiki/wiki/Distributed_build
+  # temp workaround for remote build...
+  nix.settings.require-sigs = false;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

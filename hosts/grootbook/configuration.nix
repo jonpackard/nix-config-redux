@@ -122,7 +122,10 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
+
+  # Open SSH port ONLY on tailscale interface
+  networking.firewall.interfaces.tailscale0.allowedTCPPorts = [ 22 ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

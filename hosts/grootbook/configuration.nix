@@ -11,6 +11,7 @@
     ];
 
   # Enable TLP power management
+  services.power-profiles-daemon.enable = false;
   services.tlp.enable = true;
 
   # TO-DO: https://nixos.wiki/wiki/Distributed_build

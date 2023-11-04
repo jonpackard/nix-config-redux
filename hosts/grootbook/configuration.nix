@@ -10,6 +10,9 @@
       ./hardware-configuration.nix
     ];
 
+  # Enable TLP power management
+  services.tlp.enable = true;
+
   # TO-DO: https://nixos.wiki/wiki/Distributed_build
   # temp workaround for remote build...
   nix.settings.require-sigs = false;

@@ -67,4 +67,17 @@ in
       ./atomnix/configuration.nix
     ];
   };
+
+  yautja = lib.nixosSystem {                               # Desktop Profile
+    inherit system;
+    specialArgs = {                                         # Pass Flake Variable
+      inherit inputs system unstable vars;
+      host = {
+        hostName = "yautja";
+      };
+    };
+    modules = [                                             # Modules Used
+      ./yautja/configuration.nix
+    ];
+  };
 }

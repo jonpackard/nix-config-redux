@@ -21,7 +21,7 @@
     ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "mailspring-1.11.0"
+    # "mailspring-1.11.0"
   ];
 
   # Enable Flakes and the new command-line tool
